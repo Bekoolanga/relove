@@ -1,0 +1,97 @@
+DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Na nka ithuta ho u rata hape?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFE9F0; --ink:#6B1A3E; --soft:#A8506F; --blob1:#FFB3CC; --blob2:#FF7FAE; --blob3:#FFD6E4;
+  --card:#FFF7FA; --btn:#FF3D8B; --btnink:#fff; --line:#F3A8C2;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2B0A1B; --ink:#FFD9E6; --soft:#E9A3BE; --blob1:#8A1F55; --blob2:#C2336F; --blob3:#5A1237;
+    --card:#3A1226; --btn:#FF5C9F; --btnink:#2B0A1B; --line:#7A2A50; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2B0A1B; --ink:#FFD9E6; --soft:#E9A3BE; --blob1:#8A1F55; --blob2:#C2336F; --blob3:#5A1237;
+  --card:#3A1226; --btn:#FF5C9F; --btnink:#2B0A1B; --line:#7A2A50; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  display:grid;place-items:center;padding:32px 22px;overflow-x:hidden;position:relative}
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.8;z-index:0;animation:drift 18s ease-in-out infinite alternate}
+.b1{width:60vmax;height:60vmax;background:var(--blob1);top:-20vmax;left:-15vmax}
+.b2{width:45vmax;height:45vmax;background:var(--blob2);bottom:-18vmax;right:-12vmax;animation-delay:-6s;opacity:.55}
+.b3{width:35vmax;height:35vmax;background:var(--blob3);top:30%;right:-10vmax;animation-delay:-12s}
+@keyframes drift{to{transform:translate(6vmax,4vmax) scale(1.12)}}
+main{position:relative;z-index:1;max-width:560px;width:100%;text-align:center}
+h1{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(2.6rem,11vw,4.6rem);
+  line-height:1.02;margin:0 0 28px;letter-spacing:-.02em}
+h1 span{display:block;opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+h1 span:nth-child(2){animation-delay:.5s}
+h1 span:nth-child(3){animation-delay:1s}
+@keyframes rise{to{opacity:1;transform:none}}
+.honest{font-size:1.05rem;line-height:1.6;color:var(--soft);max-width:44ch;margin:0 auto 34px;opacity:0;animation:rise .9s 1.6s forwards}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;opacity:0;animation:rise .9s 2s forwards}
+button{font:500 1rem 'DM Sans',system-ui,sans-serif;padding:14px 24px;border-radius:999px;border:2px solid var(--btn);cursor:pointer;
+  transition:transform .15s ease, background .2s}
+button:active{transform:scale(.96)}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.yes{background:var(--btn);color:var(--btnink)}
+.later{background:transparent;color:var(--ink);border-color:var(--line)}
+.reply{margin:30px auto 0;max-width:440px;background:var(--card);border:1.5px solid var(--line);border-radius:22px;
+  padding:24px 22px;text-align:left;line-height:1.6;display:none}
+.reply.show{display:block;animation:pop .45s cubic-bezier(.2,.9,.3,1.2)}
+.reply h2{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:600;font-size:1.5rem;margin:0 0 8px}
+.reply p{margin:0 0 8px}
+.reply .small{color:var(--soft);font-size:.95rem;margin:0 0 14px}
+.wa{display:inline-block;background:var(--btn);color:var(--btnink);text-decoration:none;font-weight:500;padding:12px 20px;border-radius:999px}
+.wa:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .blob,h1 span,.honest,.actions,.reply.show{animation:none;opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<main>
+  <h1 lang="st"><span>Na nka ithuta</span><span>ho u rata</span><span>hape?</span></h1>
+  <p class="honest">Long shot, but humans once landed on the moon…</p>
+  <div class="actions">
+    <button class="yes" id="yes">Maybe, let's talk</button>
+    <button class="later" id="later">I need more time</button>
+  </div>
+
+  <section class="reply" id="r-yes" aria-live="polite">
+    <h2>Lesson 1: Abantu Coffee</h2>
+    <p>Field trip! Abantu is right by where our first date happened, so technically we're returning to the scene. It's summer, so iced coffee counts and a hot one is a brave choice. Thirty minutes, zero heavy topics, and I'm paying.</p>
+    <p class="small">Dress code: sunscreen. Pass mark: showing up. Tap below to enrol.</p>
+    <a class="wa" href="https://wa.me/27769539581?text=lesson%201" target="_blank" rel="noopener">Text "lesson 1" on WhatsApp</a>
+  </section>
+  <section class="reply" id="r-later" aria-live="polite">
+    <h2>Totally fair. Take your time.</h2>
+    <p>No deadline, no follow-ups, no pressure. Humans took years to get to the moon, so I can wait.</p>
+    <p class="small">This page isn't going anywhere. It's very pink and has no other plans.</p>
+  </section>
+</main>
+<script>
+(function(){
+  var y=document.getElementById('yes'), l=document.getElementById('later');
+  var ry=document.getElementById('r-yes'), rl=document.getElementById('r-later');
+  function show(on,off){off.classList.remove('show');on.classList.remove('show');void on.offsetWidth;on.classList.add('show');on.scrollIntoView({behavior:'smooth',block:'center'});}
+  y.addEventListener('click',function(){show(ry,rl)});
+  l.addEventListener('click',function(){show(rl,ry)});
+})();
+</script>
+</body>
+</html>
